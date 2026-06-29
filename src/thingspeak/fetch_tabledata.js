@@ -1,7 +1,7 @@
 import {
   saveTableDataToFirestore,
   loadTableDataFromFirestore,
-} from "../../src/firebase/storeData.js";
+} from "../firebase/storeData.js";
 
 function getDaysInMonth(year, month) {
   return new Date(year, month, 0).getDate();

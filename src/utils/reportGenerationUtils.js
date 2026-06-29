@@ -2,8 +2,8 @@
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import { Chart } from "chart.js/auto";
-import { getMonthlyData } from "../../api/thingspeak/fetch_chartdata";
-import { fetchMonthlyHourlyPattern } from "../../api/thingspeak/fetch_bardata";
+import { getMonthlyData } from "../components/thingspeak/fetch_chartdata";
+import { fetchMonthlyHourlyPattern } from "../components/thingspeak/fetch_bardata";
 import {
     getChartStats,
     analyzeLineChartData,
