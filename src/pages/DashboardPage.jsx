@@ -10,7 +10,7 @@ import { db } from '../firebase/firebaseConfig';
 import { doc, runTransaction, collection, getDocs } from 'firebase/firestore';
 import { getAllChannels } from '../firebase/channelService.js';
 import { fetchAllUserAlerts } from '../firebase/fetch_alerts.js';
-import { fetchDeviceStatus } from '../thinkspeak/fetch_status.js';
+import { fetchDeviceStatus } from '../thingspeak/fetch_status.js';
 import { updateDashboardVisuals, createOrClearChart } from '../utils/dashboardMiniChart.js';
 
 // Determines status badge based on value and thresholds (dynamic or default).
@@ -193,7 +193,7 @@ const DashboardPage = () => {
       setTempStatus({ badgeClass: 'bg-secondary', text: 'N/A' });
     };
 
-    if (!channelConfig || !channelConfig.ID) {
+    if (!channelConfig || !channelConfig.ID || !channelConfig.ReadAPI) {
       resetValues();
       return;
     }
