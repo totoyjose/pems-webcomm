@@ -70,7 +70,7 @@ const LoginPage = () => {
       <div className={styles.pageWrapper}>
         <div className={styles.loginContainer}>
           <img src="/logo.webp" alt="PEMS Logo" className={styles.enhancedLogo} />
-          <h1>PEMS-test<span style={{ color: '#a2e089' }}>.</span></h1>
+          <h1>PEMS<span style={{ color: '#a2e089' }}>.</span></h1>
           <p>Poultry Environment Monitoring System</p>
 
           <form onSubmit={handleLogin} noValidate>
