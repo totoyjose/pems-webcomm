@@ -198,7 +198,7 @@ const AnalyticsPage = () => {
       setIsLoadingChannels(true);
       try {
         const rawChannels = await getAllChannels();
-        const channels = rawChannels.map(ch => ({ ...ch, channelId: ch.ID, readAPIKey: ch.ReadAPI, name: ch.Name, ammoniaField: "field3", tempField: "field1" }));
+        const channels = rawChannels.map(ch => ({ ...ch, channelId: ch.ID, name: ch.Name, ammoniaField: "field3", tempField: "field1" }));
         
         if (channels.length > 0) {
           const alerts = await fetchAllUserAlerts(channels);
@@ -277,7 +277,7 @@ const AnalyticsPage = () => {
       setHourlyBarTitleText("Loading Chart...");
       setInsights(null); setPredictions(null); setAnnualSummaryData([]); setHourlyRawData(null);
 
-      const { channelId, readAPIKey, name: coopName, ammoniaField: afStr, tempField: tfStr, branchName, firestoreId } = selectedChannel;
+      const { channelId, name: coopName, ammoniaField: afStr, tempField: tfStr, branchName, firestoreId } = selectedChannel;
       const ammoniaFieldNum = parseInt(afStr?.replace("field", ""), 10);
       const tempFieldNum = parseInt(tfStr?.replace("field", ""), 10);
       const now = new Date();
@@ -285,10 +285,10 @@ const AnalyticsPage = () => {
       try {
         // --- STAGE 1: Fetch core data for initial view (charts and daily predictions) ---
         const [dailyAmmonia, dailyTemp, weeklyAmmonia, weeklyTemp] = await Promise.all([
-            fetchThingSpeakData(channelId, readAPIKey, ammoniaFieldNum, 1, signal),
-            fetchThingSpeakData(channelId, readAPIKey, tempFieldNum, 1, signal),
-            fetchThingSpeakData(channelId, readAPIKey, ammoniaFieldNum, 7, signal),
-            fetchThingSpeakData(channelId, readAPIKey, tempFieldNum, 7, signal)
+            fetchThingSpeakData(channelId, ammoniaFieldNum, 1, signal),
+            fetchThingSpeakData(channelId, tempFieldNum, 1, signal),
+            fetchThingSpeakData(channelId, ammoniaFieldNum, 7, signal),
+            fetchThingSpeakData(channelId, tempFieldNum, 7, signal)
         ]);
         if (signal.aborted) return;
         
@@ -310,13 +310,13 @@ const AnalyticsPage = () => {
 
         // --- STAGE 2: Fetch remaining data for insights, weekly predictions, and other reports ---
         const [thirtyDayAmmonia, thirtyDayTemp, monthlyAmmonia, monthlyTemp, annualData, hourlyAmmonia, hourlyTemp] = await Promise.all([
-          fetchThingSpeakData(channelId, readAPIKey, ammoniaFieldNum, 30, signal),
-          fetchThingSpeakData(channelId, readAPIKey, tempFieldNum, 30, signal),
-          getMonthlyData(channelId, readAPIKey, ammoniaFieldNum, now.getMonth() + 1, now.getFullYear(), signal),
-          getMonthlyData(channelId, readAPIKey, tempFieldNum, now.getMonth() + 1, now.getFullYear(), signal),
-          getAnnualMinMaxData(branchName, firestoreId, CURRENT_YEAR, channelId, readAPIKey, ammoniaFieldNum, tempFieldNum, signal),
-          fetchMonthlyHourlyPattern(channelId, readAPIKey, ammoniaFieldNum, now.getFullYear(), now.getMonth() + 1, signal),
-          fetchMonthlyHourlyPattern(channelId, readAPIKey, tempFieldNum, now.getFullYear(), now.getMonth() + 1, signal)
+          fetchThingSpeakData(channelId, ammoniaFieldNum, 30, signal),
+          fetchThingSpeakData(channelId, tempFieldNum, 30, signal),
+          getMonthlyData(channelId, ammoniaFieldNum, now.getMonth() + 1, now.getFullYear(), signal),
+          getMonthlyData(channelId, tempFieldNum, now.getMonth() + 1, now.getFullYear(), signal),
+          getAnnualMinMaxData(branchName, firestoreId, CURRENT_YEAR, channelId, ammoniaFieldNum, tempFieldNum, signal),
+          fetchMonthlyHourlyPattern(channelId, ammoniaFieldNum, now.getFullYear(), now.getMonth() + 1, signal),
+          fetchMonthlyHourlyPattern(channelId, tempFieldNum, now.getFullYear(), now.getMonth() + 1, signal)
         ]);
         if (signal.aborted) return;
 

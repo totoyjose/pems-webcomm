@@ -193,7 +193,7 @@ const DashboardPage = () => {
       setTempStatus({ badgeClass: 'bg-secondary', text: 'N/A' });
     };
 
-    if (!channelConfig || !channelConfig.ID || !channelConfig.ReadAPI) {
+    if (!channelConfig || !channelConfig.ID) {
       resetValues();
       return;
     }
