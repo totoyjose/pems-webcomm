@@ -2,6 +2,21 @@
 
 /* PERFORMANCE: Google Fonts are now loaded via <link> in index.html to prevent render-blocking. */
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); */
+@font-face {
+    font-family: "Poppins";
+    src: url("../public/assets/fonts/Poppins-Regular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("../public/assets/fonts/Poppins-SemiBold.ttf") format("ttf");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
 
 ::after,
 ::before {
