@@ -43,7 +43,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: blob: https://www.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://api.thingspeak.com https://us-central1-flutter-pems.cloudfunctions.net; object-src 'none'; frame-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
+          "value": "default-src 'self'; script-src 'self' https://va.vercel-scripts.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; img-src 'self' data: blob: https://www.google.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://api.thingspeak.com https://us-central1-flutter-pems.cloudfunctions.net; object-src 'none'; frame-src 'self' blob:; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests;"
         },
         {
           "key": "Cache-Control",
