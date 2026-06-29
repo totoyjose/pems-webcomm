@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../components/layout/Sidebar';
 import styles from '../styles/GenerateReportPage.module.css';
 import { getAllChannels } from '../firebase/channelService.js';
-import { getAnnualMinMaxData } from '../thinkspeak/fetch_tabledata.js';
+import { getAnnualMinMaxData } from '../thingspeak/fetch_tabledata.js';
 import { createPdfDocument, createAnnualPdfDocument, calculateMonthlySummary } from '../utils/reportGenerationUtils';
 
 // Averages annual report data from multiple poultry houses.
