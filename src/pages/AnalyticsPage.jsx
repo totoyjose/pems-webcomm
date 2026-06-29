@@ -6,7 +6,7 @@ import { Bar, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Filler, Title, Tooltip, Legend } from 'chart.js';
 import { getAllChannels } from '../firebase/channelService.js';
 import { fetchAllUserAlerts } from '../firebase/fetch_alerts.js';
-import { fetchThingSpeakData, getMonthlyData } from '../thingspeak/fetch_chartdata.js';
+import { fetchThingSpeakData, getMonthlyData } from '../thinkspeak/fetch_chartdata.js';
 import { getAnnualMinMaxData } from '../thinkspeak/fetch_tabledata.js';
 import { fetchMonthlyHourlyPattern } from '../thinkspeak/fetch_bardata.js';
 import { fetchDeviceStatus } from '../thinkspeak/fetch_status.js';
