@@ -12,7 +12,6 @@ import { getAllChannels } from '../firebase/channelService.js';
 import { fetchAllUserAlerts } from '../firebase/fetch_alerts.js';
 import { fetchDeviceStatus } from '../thingspeak/fetch_status.js';
 import { updateDashboardVisuals, createOrClearChart } from '../utils/dashboardMiniChart.js';
-import { Toast } from "bootstrap";
 
 // Determines status badge based on value and thresholds (dynamic or default).
 const getStatus = (value, type, alertThresholds = {}) => {
@@ -405,7 +404,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     if (toastRef.current && toastInfo.show) {
-      const toast = new Toast(toastRef.current, { delay: 3000 });
+      const toast = new window.bootstrap.Toast(toastRef.current, { delay: 3000 });
       toast.show();
       const handleHidden = () => setToastInfo(prev => ({ ...prev, show: false }));
       toastRef.current.addEventListener('hidden.bs.toast', handleHidden, { once: true });

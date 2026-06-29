@@ -1,5 +1,6 @@
 // src/components/modals/AllAlertsModals.jsx
 import React, { useEffect, useRef } from 'react';
+import { Modal } from 'bootstrap';
 import styles from './AllAlertsModals.module.css';
 
 const AllAlertsModal = ({ show, onHide, alerts, onAcknowledge, onAnalyze, getBadgeDetailsForAlertType }) => {
@@ -8,9 +9,9 @@ const AllAlertsModal = ({ show, onHide, alerts, onAcknowledge, onAnalyze, getBad
 
   useEffect(() => {
     if (!modalRef.current) return;
-    const modalInstance = window.bootstrap.Modal.getOrCreateInstance(modalRef.current);
+    const modalInstance = Modal.getOrCreateInstance(modalRef.current);
     bsModalInstance.current = modalInstance;
-    
+
     const handleHidden = () => onHide();
     const modalEl = modalRef.current;
     modalEl.addEventListener('hidden.bs.modal', handleHidden);
@@ -38,40 +39,40 @@ const AllAlertsModal = ({ show, onHide, alerts, onAcknowledge, onAnalyze, getBad
   const AlertItem = ({ alert, isAcknowledged }) => {
     const { iconClass, iconColorClass } = getBadgeDetailsForAlertType(alert.type);
     const itemClasses = [
-        styles.listGroupItem,
-        isAcknowledged ? styles.acknowledgedItem : styles.unacknowledgedItem,
+      styles.listGroupItem,
+      isAcknowledged ? styles.acknowledgedItem : styles.unacknowledgedItem,
     ].join(' ');
 
     return (
-        <div className={`list-group-item d-flex justify-content-between align-items-center ${itemClasses}`}>
-            <div className="d-flex align-items-center flex-grow-1" style={{ minWidth: 0 }}>
-                <i className={`${iconClass} ${iconColorClass} mx-3 fs-4 flex-shrink-0`}></i>
-                <div className="flex-grow-1" style={{ minWidth: 0 }}>
-                    <small className="text-muted d-block text-truncate" title={`${alert.branchName} / ${alert.channelName} • ${alert.time}`}>{alert.branchName} / <u className="text-muted">{alert.channelName}</u> • {alert.time}</small>
-                    <span className={`mb-0 d-block text-truncate ${styles.alertMessage}`}>{alert.message}</span>
-                    {isAcknowledged && alert.actionTaken && alert.actionTaken.length > 0 && (
-                        <div className={`${styles.actionTakenContainer} mt-1`}>
-                            <i className="bi bi-tools me-1"></i>
-                            <small className="text-muted text-truncate" title={`Actions: ${alert.actionTaken.join(', ')}`}>{alert.actionTaken.join(', ')}</small>
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="d-flex align-items-center flex-shrink-0 ms-2">
-                {isAcknowledged ? (
-                    <i className="bi bi-check-circle-fill text-success fs-4" title="Acknowledged"></i>
-                ) : (
-                    <>
-                        <button className="btn btn-outline-primary me-2" title={`Analyze Alert: ${alert.message}`} onClick={(e) => { e.stopPropagation(); onAnalyze(alert); }}>
-                            <i className="bi bi-clipboard2-data"></i>
-                        </button>
-                        <button className="btn btn-outline-success" title={`Acknowledge Alert: ${alert.message}`} onClick={(e) => { e.stopPropagation(); onAcknowledge(alert); }}>
-                            <i className="bi bi-check-circle"></i>
-                        </button>
-                    </>
-                )}
-            </div>
+      <div className={`list-group-item d-flex justify-content-between align-items-center ${itemClasses}`}>
+        <div className="d-flex align-items-center flex-grow-1" style={{ minWidth: 0 }}>
+          <i className={`${iconClass} ${iconColorClass} mx-3 fs-4 flex-shrink-0`}></i>
+          <div className="flex-grow-1" style={{ minWidth: 0 }}>
+            <small className="text-muted d-block text-truncate" title={`${alert.branchName} / ${alert.channelName} • ${alert.time}`}>{alert.branchName} / <u className="text-muted">{alert.channelName}</u> • {alert.time}</small>
+            <span className={`mb-0 d-block text-truncate ${styles.alertMessage}`}>{alert.message}</span>
+            {isAcknowledged && alert.actionTaken && alert.actionTaken.length > 0 && (
+              <div className={`${styles.actionTakenContainer} mt-1`}>
+                <i className="bi bi-tools me-1"></i>
+                <small className="text-muted text-truncate" title={`Actions: ${alert.actionTaken.join(', ')}`}>{alert.actionTaken.join(', ')}</small>
+              </div>
+            )}
+          </div>
         </div>
+        <div className="d-flex align-items-center flex-shrink-0 ms-2">
+          {isAcknowledged ? (
+            <i className="bi bi-check-circle-fill text-success fs-4" title="Acknowledged"></i>
+          ) : (
+            <>
+              <button className="btn btn-outline-primary me-2" title={`Analyze Alert: ${alert.message}`} onClick={(e) => { e.stopPropagation(); onAnalyze(alert); }}>
+                <i className="bi bi-clipboard2-data"></i>
+              </button>
+              <button className="btn btn-outline-success" title={`Acknowledge Alert: ${alert.message}`} onClick={(e) => { e.stopPropagation(); onAcknowledge(alert); }}>
+                <i className="bi bi-check-circle"></i>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
     );
   };
 
@@ -90,10 +91,10 @@ const AllAlertsModal = ({ show, onHide, alerts, onAcknowledge, onAnalyze, getBad
               ) : (
                 <>
                   {unacknowledgedAlerts.length === 0 && (
-                      <div className="p-4 text-center text-muted">
-                        <h5><i className="bi bi-check2-circle me-2"></i>No new alerts</h5>
-                        <p className="mb-0">All alerts have been acknowledged.</p>
-                      </div>
+                    <div className="p-4 text-center text-muted">
+                      <h5><i className="bi bi-check2-circle me-2"></i>No new alerts</h5>
+                      <p className="mb-0">All alerts have been acknowledged.</p>
+                    </div>
                   )}
                   {unacknowledgedAlerts.map(alert => <AlertItem key={alert.id} alert={alert} isAcknowledged={false} />)}
 

@@ -1,5 +1,6 @@
 // src/components/modals/AcknowledgeAlertModal.jsx
 import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { Modal } from 'bootstrap';
 import styles from './AcknowledgeAlertModal.module.css';
 
 const ammoniaActions = [
@@ -22,9 +23,9 @@ const AcknowledgeAlertModal = ({ show, onHide, alert, onSubmit }) => {
 
   useEffect(() => {
     if (!modalRef.current) return;
-    const modalInstance = window.bootstrap.Modal.getOrCreateInstance(modalRef.current);
+    const modalInstance = Modal.getOrCreateInstance(modalRef.current);
     bsModalInstance.current = modalInstance;
-    
+
     const handleHidden = () => {
       onHide();
       setSelectedActions(new Set()); // Reset state when modal is hidden
@@ -77,9 +78,9 @@ const AcknowledgeAlertModal = ({ show, onHide, alert, onSubmit }) => {
             {alert && (
               <>
                 <div className={styles.alertInfo}>
-                    <p className="mb-1"><strong>Branch:</strong> {alert.branchName}</p>
-                    <p className="mb-1"><strong>Poultry House:</strong> {alert.channelName}</p>
-                    <p className="mb-2"><strong>Message:</strong> <span className="fw-bold">{alert.message}</span></p>
+                  <p className="mb-1"><strong>Branch:</strong> {alert.branchName}</p>
+                  <p className="mb-1"><strong>Poultry House:</strong> {alert.channelName}</p>
+                  <p className="mb-2"><strong>Message:</strong> <span className="fw-bold">{alert.message}</span></p>
                 </div>
                 <hr />
                 <p>Select all actions taken to resolve this issue:</p>
